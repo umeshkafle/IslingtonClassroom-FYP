@@ -1,0 +1,10 @@
+<h3> Form to add subject </h3>
+
+<%= form_for :subject, url: { :action => 'create' } do |f| %>
+	<div class="form-group">
+    <%= f.label :Subject_Name %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <%= f.submit class: "btn btn-primary" %>
+
+<%end%>

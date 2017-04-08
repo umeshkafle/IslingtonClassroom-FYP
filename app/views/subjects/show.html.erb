@@ -1,0 +1,8 @@
+<div class="well">
+  <h4> Recently added subject</h4>
+  <div>
+    <%= @subject.title%>
+  </div>
+  <%= link_to 'Edit', edit_course_subject_path(@subject.course, @subject) %> |
+  <%= link_to 'Back', course_subjects_path(@subject.course) %>
+</div>
