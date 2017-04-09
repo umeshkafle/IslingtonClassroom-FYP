@@ -1,18 +1,17 @@
 class SubjectsController < ApplicationController
-  class SubjectsController < ApplicationController
+
   def index
     @course = Course.find(params[:course_id])
     @subjects = @course.subjects
   end
 
   def new
-    @course = Course.find(params[:course_id])
-    @subject = @course.subjects.new
+    @subject = Subject.new
   end
 
   def create
     @course = Course.find(params[:course_id])
-    @subject = @course.subjects.new(subject_params)
+    @subject = @course.subject.new(subject_params)
 
     if @subject.save
       redirect_to [@subject.course, @subject], notice: "The subject has been created!" and return
@@ -39,12 +38,11 @@ class SubjectsController < ApplicationController
     @course = Course.find(params[:course_id])
     @subject = @course.subjects.find(params[:id])
     if @subject.destroy
-
-    redirect_to course_subjects_url, notice: "#{title} has been deleted!" and return
+      redirect_to course_subjects_url, notice: "#{title} has been deleted!" and return
+    end
   end
-private
+  private
   def subject_params
-    params.require(:subject).permit(:title, :subject_code, :attachment, :course_id)
+    params.require(:subject).permit(:title, :subject_code, :attachment)
   end
-end
 end

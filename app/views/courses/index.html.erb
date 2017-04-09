@@ -23,6 +23,9 @@
             <td>
               <%= link_to "Delete", course, method: :delete, data: { confirm: "Are you sure you wish to delete #{course.title}"}, class: "btn btn-danger" %>
             </td>
+            <td>
+            	<%= link_to "Add Subject", new_course_subject_path(course.id), class: "btn btn-info"%>
+            </td>
           </tr>
         <% end %>
       </tbody>

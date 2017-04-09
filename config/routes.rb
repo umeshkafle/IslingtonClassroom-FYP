@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   devise_for :users
-  resources :courses
-  resources :subjects
+
+  resources :courses do
+    resources :subjects
+  end
 
 
-  root "student_dashboard#index"
+  root "courses#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
