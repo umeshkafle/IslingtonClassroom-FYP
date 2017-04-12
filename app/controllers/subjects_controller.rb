@@ -11,10 +11,10 @@ class SubjectsController < ApplicationController
 
   def create
     @course = Course.find(params[:course_id])
-    @subject = @course.subject.new(subject_params)
+    @subject = @course.subjects.new(subject_params)
 
     if @subject.save
-      redirect_to [@subject.course, @subject], notice: "The subject has been created!" and return
+      redirect_to course_subjects_path, notice: "The subject has been created!" and return
     end
     render 'new'
   end

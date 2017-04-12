@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170409100152) do
+ActiveRecord::Schema.define(version: 20170410161708) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -60,8 +60,19 @@ ActiveRecord::Schema.define(version: 20170409100152) do
   end
 
   create_table "lecturers", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "invitation_token"
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer  "invitation_limit"
+    t.string   "invited_by_type"
+    t.integer  "invited_by_id"
+    t.integer  "invitations_count",      default: 0
+    t.index ["invitation_token"], name: "index_lecturers_on_invitation_token", unique: true
+    t.index ["invitations_count"], name: "index_lecturers_on_invitations_count"
+    t.index ["invited_by_id"], name: "index_lecturers_on_invited_by_id"
   end
 
   create_table "student_subjects", force: :cascade do |t|
@@ -70,8 +81,19 @@ ActiveRecord::Schema.define(version: 20170409100152) do
   end
 
   create_table "students", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "invitation_token"
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer  "invitation_limit"
+    t.string   "invited_by_type"
+    t.integer  "invited_by_id"
+    t.integer  "invitations_count",      default: 0
+    t.index ["invitation_token"], name: "index_students_on_invitation_token", unique: true
+    t.index ["invitations_count"], name: "index_students_on_invitations_count"
+    t.index ["invited_by_id"], name: "index_students_on_invited_by_id"
   end
 
   create_table "subjects", force: :cascade do |t|
@@ -111,7 +133,18 @@ ActiveRecord::Schema.define(version: 20170409100152) do
     t.text     "address"
     t.string   "username"
     t.string   "college_name"
+    t.string   "invitation_token"
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer  "invitation_limit"
+    t.string   "invited_by_type"
+    t.integer  "invited_by_id"
+    t.integer  "invitations_count",      default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
+    t.index ["invitations_count"], name: "index_users_on_invitations_count"
+    t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

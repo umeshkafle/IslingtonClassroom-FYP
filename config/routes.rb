@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users
+  devise_for :users,
+          :controllers => {:invitations => 'users_invitations'}# user_invitations_controller.rb
 
   resources :courses do
     resources :subjects

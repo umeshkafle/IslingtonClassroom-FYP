@@ -4,9 +4,11 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
-
-gem 'devise', '~> 4.2', '>= 4.2.1'
+gem 'pry-rails', '~> 0.3.5'
+gem 'devise', '~> 4.2'
+gem 'devise_invitable', '~>1.7.0'
 gem 'activeadmin', '~> 1.0.0.pre5'
+gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'carrierwave', '~> 0.11.2'
 gem 'streamio-ffmpeg', '=1.0.0'
