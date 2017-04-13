@@ -21,7 +21,7 @@ permit_params :first_name, :last_name, :dob, :phone_no, :address, :username, :co
     end
 
     collection_action :send_invitation, :method => :post do
-      @user = User.invite!(:email => params[:user]["email"])
+      @user = User.invite!(:email => params[:user]["email"], type: params[:user][:type])
       if @user.errors.empty?
         flash[:success] = "User has been successfully invited."
         redirect_to admin_users_path
@@ -31,5 +31,4 @@ permit_params :first_name, :last_name, :dob, :phone_no, :address, :username, :co
         redirect_to new_invitation_admin_users_path
       end
     end
-
 end

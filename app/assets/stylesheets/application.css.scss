@@ -16,6 +16,20 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
- .well {
-	margin-top: 55px;
+ 
+
+#login-page {
+	margin-left: 350px;
+	margin-top: 150px;
+	margin-right: 450px;
+	box-shadow: 10px 5px 15px;
 }
+
+.panel-body{
+	padding-left : 100px;
+}
+
+ a:link{
+ 	text-decoration: none;
+ 	color: #555;
+ }
