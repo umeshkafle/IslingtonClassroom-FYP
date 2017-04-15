@@ -8,6 +8,7 @@ gem 'pry-rails', '~> 0.3.5'
 gem 'devise', '~> 4.2'
 gem 'devise_invitable', '~>1.7.0'
 gem 'activeadmin', '~> 1.0.0.pre5'
+gem "cocoon"
 gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'carrierwave', '~> 0.11.2'
