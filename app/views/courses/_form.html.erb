@@ -1,10 +1,17 @@
 <h3> Form to add course </h3>
 
 <%= form_for :course, url: { :action => 'create' } do |f| %>
-	<div class="form-group">
+  <div class="form-group">
     <%= f.label :Course_Title %>
-    <%= f.text_field :title, class: "form-control" %>
+    <%= f.select :title, options_for_select(Course.pluck(:title, :id)), {}, {:class => 'genForm_dropBox', id: 'JS-course'} %>
   </div>
+  <div>
+    <%= f.fields_for :subjects do |s|%>
+      <%= s.label :title%>
+      <%= f.select :title, options_for_select(@subjects[Course.first.id].map{|a| a[0...-1]}), {}, {multiple: true, class: "input-lg", id: 'JS-subjects', "data-subjects" => @subjects.to_json} %>
+    <%end%>
+  </div>
+
   <%= f.submit class: "btn btn-primary" %>
 
 <%end%>

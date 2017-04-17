@@ -88,6 +88,7 @@ GEM
       streamio-ffmpeg
     carrierwave-video-thumbnailer (0.1.4)
       carrierwave
+    cocoon (1.2.9)
     coderay (1.1.1)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
@@ -259,6 +260,7 @@ DEPENDENCIES
   carrierwave (~> 0.11.2)
   carrierwave-video (~> 0.5.6)
   carrierwave-video-thumbnailer (~> 0.1.4)
+  cocoon (~> 1.2, >= 1.2.9)
   coffee-rails (~> 4.2)
   devise (~> 4.2)
   devise_invitable (~> 1.7.0)

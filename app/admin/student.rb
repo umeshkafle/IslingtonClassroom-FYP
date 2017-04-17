@@ -7,7 +7,7 @@ ActiveAdmin.register Student do
 #
 # or
 #
-permit_params :first_name, :last_name, :dob, :phone_no, :address, :username, :college_name, :email, :password, :remember_me
+#permit_params :first_name, :last_name, :dob, :phone_no, :address, :username, :college_name, :email, :password, :remember_me
 #   permitted = [:permitted, :attributes]
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted

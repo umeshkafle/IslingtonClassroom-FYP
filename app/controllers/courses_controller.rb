@@ -11,6 +11,7 @@ class CoursesController < ApplicationController
 
   def new
     @course = Course.new
+    @subjects = Subject.pluck(:title, :id, :course_id).group_by{|a| a.last}
   end
 
   def create
@@ -43,7 +44,7 @@ class CoursesController < ApplicationController
   private
 
   def course_params
-    params.require(:course).permit(:title)
+    params.require(:course).permit(:title, subjects_attribute: [:title, :id])
   end
 end
 
