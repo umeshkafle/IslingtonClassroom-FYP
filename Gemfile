@@ -15,6 +15,7 @@ gem 'carrierwave', '~> 0.11.2'
 gem 'streamio-ffmpeg', '=1.0.0'
 gem 'carrierwave-video', '~>0.5.6'
 gem 'carrierwave-video-thumbnailer', '~>0.1.4'
+gem 'chosen-rails', '~> 1.5', '>= 1.5.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
 # Use sqlite3 as the database for Active Record

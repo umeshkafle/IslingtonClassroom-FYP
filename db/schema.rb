@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170416073407) do
+ActiveRecord::Schema.define(version: 20170421043440) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 20170416073407) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "announcements", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "assignments", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at", null: false
@@ -50,13 +60,17 @@ ActiveRecord::Schema.define(version: 20170416073407) do
   end
 
   create_table "lecturer_students", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "lecturer_id"
+    t.integer  "student_id"
   end
 
   create_table "lecturer_subjects", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "lecturer_id"
+    t.integer  "subject_id"
   end
 
   create_table "lecturers", force: :cascade do |t|
@@ -75,9 +89,16 @@ ActiveRecord::Schema.define(version: 20170416073407) do
     t.index ["invited_by_id"], name: "index_lecturers_on_invited_by_id"
   end
 
+  create_table "materials", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "student_subjects", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "subject_id"
+    t.integer  "student_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -112,6 +133,7 @@ ActiveRecord::Schema.define(version: 20170416073407) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "category"
+    t.string   "type"
   end
 
   create_table "users", force: :cascade do |t|

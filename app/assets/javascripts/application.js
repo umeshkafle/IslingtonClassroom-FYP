@@ -14,5 +14,18 @@
 //= require bootstrap-sprockets
 //= require cocoon
 //= require jquery_ujs
+//= require chosen-jquery
 //= require turbolinks
 //= require_tree .
+
+// function chosen_init() {
+//   $(".chosen-select").chosen().change(
+//     function(){
+//       var user = $('option:selected',this);
+//       var user_url = user.attr('data-url');
+//       $.getScript(user_url)
+//     }
+//   );
+// }
+
+// $(document).on('turbolinks:load', function(){chosen_init()});

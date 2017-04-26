@@ -1,17 +1,19 @@
-<h3> Form to add course </h3>
+<div class="panel-body">
+  <%= form_for :course, url:{:action => 'create'} do |f| %>
 
-<%= form_for :course, url: { :action => 'create' } do |f| %>
-  <div class="form-group">
-    <%= f.label :Course_Title %>
-    <%= f.select :title, options_for_select(Course.pluck(:title, :id)), {}, {:class => 'genForm_dropBox', id: 'JS-course'} %>
-  </div>
-  <div>
+    <%= f.select :title,
+      Course.all.map { |c| [c.title, c.id] },
+               { include_blank: true },
+               { class: 'chosen-select' }%>
+
     <%= f.fields_for :subjects do |s|%>
-      <%= s.label :title%>
-      <%= f.select :title, options_for_select(@subjects[Course.first.id].map{|a| a[0...-1]}), {}, {multiple: true, class: "input-lg", id: 'JS-subjects', "data-subjects" => @subjects.to_json} %>
+      <%= f.select :title,
+      Subject.all.map { |s| [s.title, s.id] },
+               { include_blank: true },
+               { multiple: true, class: 'chosen-select' }%>
     <%end%>
-  </div>
-
-  <%= f.submit class: "btn btn-primary" %>
-
-<%end%>
+    <div class="action">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+  <%end%>
+</div>

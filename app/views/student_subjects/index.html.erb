@@ -1,0 +1,12 @@
+
+<h2>Hello</h2>
+<h2>Hello</h2>
+<h2>Hello</h2>
+<h2>Hello</h2>
+
+<% @subjects.each do |subject| %>
+<ul>
+	<li><%= link_to "#{subject.title}", student_subject_path(subject)%></li>
+</ul>
+
+<% end %>

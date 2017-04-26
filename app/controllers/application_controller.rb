@@ -5,23 +5,17 @@ class ApplicationController < ActionController::Base
 
   protected
     def configure_permitted_parameters
-    	devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:first_name, :last_name, :dob, :phone_no, :address, :username, :college_name, :email, :password, :remember_me)}
-    	devise_parameter_sanitizer.permit(:sign_in) { |u| u.permit(:email, :password, :remember_me)}
-    	devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:first_name, :last_name, :dob, :phone_no, :address, :username, :college_name, :email, :password, :remember_me)}
-
+    	#devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :email, :password, :password_confirmation])
+      devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password, :remember_me])
+      devise_parameter_sanitizer.permit(:account_update,keys: [:first_name, :last_name, :email, :dob, :phone_no, :address, :course, :password, :confirmation_password])
     	devise_parameter_sanitizer.permit(:accept_invitation)
     	devise_parameter_sanitizer.permit(:accept_invitation) do |u|
         u.permit(:email, :password, :password_confirmation, :invitation_token, :type)
     	end
     end
 
-  def redirect_url
-    return new_user_session_path unless user_signed_in?
-    case current_user.Type
-      when student
-        student_dashboard_path
-      when lecturer
-        lecturer_dashboard_path
-    end
+  def after_sign_in_path_for(resource)
+    redirect_to student_dashboard_path if resource.student?
+    redirect_to lecturer_dashboard_path if resource.lecturer?
   end
 end

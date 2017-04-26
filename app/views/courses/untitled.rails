@@ -1,0 +1,35 @@
+<div id="course-form">
+  <%= form_for :student_subject, url: student_subjects_path do |f| %>
+    <div class="form-group">
+      <%= f.label :Course_Title %>
+      <%= f.select :title, options_for_select(Course.pluck(:title, :id)), {}, {:class => 'genForm_dropBox', id: 'JS-course'} %>
+    </div>
+    <div>
+      <%= f.fields_for :subjects do |s|%>
+      <div class="form-group">
+        <%= s.label :title%>
+        <%= f.select :title, options_for_select(@subjects[Course.first.id].map{|a| a[0...-1]}), {}, {multiple: true, class: "input-lg", id: 'JS-subjects', "data-subjects" => @subjects.to_json} %>
+      </div>
+      <%end%>
+    </div>
+
+    <%= f.submit class: "btn btn-primary" %>
+  <%end%>
+</div>
+
+-----------Coffee-Script-------------------------
+class Course
+constructor: ->
+  $('#JS-course').on 'change', (e)->
+    subject_elem = document.getElementById('JS-subjects')
+    data = JSON.parse(subject_elem.dataset.subjects)
+    subject_option = data[this.value]
+    if(subject_option == undefined || subject_option.length > 0)
+      $(subject_elem.options).remove()
+      for k,v in subject_option
+        subject_elem.options[v] = new Option(k[0], k[1])
+    else
+      $(this.subject_elem.options).remove()
+
+$(document).on 'ready change', (e) ->
+course = new Course()

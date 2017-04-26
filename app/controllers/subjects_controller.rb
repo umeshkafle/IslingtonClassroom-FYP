@@ -9,6 +9,9 @@ class SubjectsController < ApplicationController
     @subject = Subject.new
   end
 
+  def show
+  end
+
   def create
     @course = Course.find(params[:course_id])
     @subject = @course.subjects.new(subject_params)

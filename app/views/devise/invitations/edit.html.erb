@@ -1,18 +1,57 @@
-<h2><%= t 'devise.invitations.edit.header' %></h2>
+<div class="panel-body" style="box-shadow: 10px 5px 15px; margin-top:125px; margin-left:50px; margin-right:50px; padding-left: 60px; padding-right: 60px; padding-bottom: 60px;">
+  <h2><%= t 'devise.invitations.edit.Update your Profile' %></h2>
 
-<%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :invitation_token %>
+  <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
+    <%= devise_error_messages! %>
+    <%= f.hidden_field :invitation_token %>
+    
+    <% if f.object.class.require_password_on_accepting %>
+    <div class="row">
+    <div class="col-md-6" style="float:left;">
+      <div class="form-group">
+        <%= f.label :First_Name %>
+        <%= f.text_field :first_name, autofocus: true, class: "form-control" %>
+      </div>
+          
+      <div class="form-group">
+        <%= f.label :Last_Name %><br />
+        <%= f.text_field :last_name, autofocus: true, class: "form-control" %>
+      </div>
 
-  <% if f.object.class.require_password_on_accepting %>
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
+      <div class="form-group">
+        <%= f.label :Birthday %><br />
+        <%= f.text_field :dob, autofocus: true, class: "form-control" %>
+      </div>
 
-  <p><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></p>
-  <% end %>
+      <div class="form-group">
+        <%= f.label :Address %><br />
+        <%= f.text_area :address, autofocus: true, class: "form-control" %>
+      </div>
 
-  
+    </div>
+    <div class="col-md-6" style="float:right;">
+      <div class="form-group">
+        <%= f.label :Phone_No %><br />
+        <%= f.text_field :phone_no, autofocus: true, class: "form-control" %>
+      </div>
 
-  <p><%= f.submit t("devise.invitations.edit.submit_button") %></p>
-<% end %>
+      <div class="form-group">
+        <%= f.label :Username %><br />
+        <%= f.text_field :username, autofocus: true, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, class: "form-control"%>
+      </div>
+      <div class="invitation" style="float:left;">
+        <%= f.submit t("devise.invitations.edit.submit_button"), class: "btn btn-info" %>
+      </div>
+    </div>
+    <% end %>
+  <%end%>
+</div>

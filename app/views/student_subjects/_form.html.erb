@@ -1,0 +1,11 @@
+
+
+<%= form_for @student_subject do |f|%>
+  <div class="field">
+  	<%= f.label :title%>
+    <%= f.select :subject_id, Subject.all.collect { |s| [ s.title, s.id ] } %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
