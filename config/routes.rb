@@ -6,27 +6,24 @@ Rails.application.routes.draw do
           :controllers => {:invitations => 'users_invitations'}# user_invitations_controller.rb
 
   authenticate :user, ->(user) { user.student? } do
-    get '/dashboard' => 'pages#student_dashboard'
-    resources :students, only: [:edit, :update] do
-    end
+    root 'student_dashboard#index'
+    resources :students, only: [:edit, :update]
   end
 
   authenticate :user, ->(user) { user.lecturer? } do
-    get '/dashboard' => 'pages#lecturer_dashboard'
-    resources :lecturers, only: [:edit, :update] do
-    end
+    root 'lecturer_dashboard#index'
+    resources :lecturers, only: [:edit, :update]
   end
 
 
-
+  resources :subjects, only: [] do
+    resources :materials, only: [:new, :create]
+  end
   resources :student_subjects
   resources :lecturer_subjects
   resources :courses do
     resources :subjects
   end
-
-
-  root "student_dashboard#index"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

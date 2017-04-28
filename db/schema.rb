@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170421043440) do
+ActiveRecord::Schema.define(version: 20170427182855) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -41,16 +41,6 @@ ActiveRecord::Schema.define(version: 20170421043440) do
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
-  end
-
-  create_table "announcements", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "assignments", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "courses", force: :cascade do |t|
@@ -89,11 +79,6 @@ ActiveRecord::Schema.define(version: 20170421043440) do
     t.index ["invited_by_id"], name: "index_lecturers_on_invited_by_id"
   end
 
-  create_table "materials", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "student_subjects", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -130,10 +115,12 @@ ActiveRecord::Schema.define(version: 20170421043440) do
   create_table "uploads", force: :cascade do |t|
     t.string   "title"
     t.string   "attachment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "category"
     t.string   "type"
+    t.integer  "lecturer_id"
+    t.integer  "subject_id"
   end
 
   create_table "users", force: :cascade do |t|

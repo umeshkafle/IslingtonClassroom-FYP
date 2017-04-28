@@ -1,0 +1,10 @@
+
+<h3>Subject</h3>
+<%= link_to "Add Materials", new_subject_material_path(@subject), class: "btn btn-primary"%>
+<div class="well">
+<% binding.pry%>
+  <%= @subject.title%>
+  <% @materials.each do |material|%>
+  	<%= link_to "Download Materials", material.attachment_url %>
+  <% end %>
+</div>

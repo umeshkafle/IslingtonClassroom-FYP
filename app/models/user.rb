@@ -5,4 +5,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :invitable
 
          has_many :uploads
+
+  def student?
+    type == 'Student'
+  end
+
+  def lecturer?
+    type == 'Lecturer'
+  end
+
 end
