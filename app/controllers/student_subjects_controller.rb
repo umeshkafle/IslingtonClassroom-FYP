@@ -7,6 +7,9 @@ class StudentSubjectsController < ApplicationController
 
   def show
   	@subject = Subject.find(params[:id])
+    @materials = @subject.materials
+    @assignments = @subject.assignments
+    @announcements = @subject.announcements
   end
 
   def new
@@ -14,16 +17,9 @@ class StudentSubjectsController < ApplicationController
   end
 
   def create
-  	@subject = current_user.subjects.new(subject_params)
-  	if @subject.save
-  		redirect_to student_subjects_path
-    else
-      render 'new'
+  	@subject = current_user.subjects.new
+    if @subject.save
+      redirect_lecturer_subjects_path
     end
-  end
-
-  private
-  def subject_params
-  	params.require(student_subject).permit(:title)
   end
 end

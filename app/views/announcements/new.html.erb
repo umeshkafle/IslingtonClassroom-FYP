@@ -1,0 +1,13 @@
+<h3>Form to post announcement</h3>
+
+<div class="container">
+
+  <%= form_for :announcement, url: subject_announcements_path(@subject),html: { multipart: true } do |f| %>
+    <div class="form-group">
+      <%= f.label :Announcement%>
+      <%= f.text_area :description, class: "form-control"%>
+    </div>
+    <%= f.submit "Post Announcements", class: "btn btn-info"%>
+
+  <% end %>
+</div>

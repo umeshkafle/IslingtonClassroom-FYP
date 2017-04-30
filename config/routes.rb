@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   resources :subjects, only: [] do
     resources :materials, only: [:new, :create]
+    resources :assignments, only: [:new, :create]
+    resources :announcements, only: [:new, :create]
   end
   resources :student_subjects
   resources :lecturer_subjects

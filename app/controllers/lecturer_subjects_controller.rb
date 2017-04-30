@@ -6,8 +6,9 @@ class LecturerSubjectsController < ApplicationController
 
   def show
     @subject = Subject.find(params[:id])
-    binding.pry
     @materials = @subject.materials
+    @assignments = @subject.assignments
+    @announcements = @subject.announcements
   end
 
   def new

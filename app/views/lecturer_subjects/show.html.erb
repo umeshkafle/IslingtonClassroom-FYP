@@ -1,10 +1,48 @@
+<div class="container" style="width: 75%">
 
-<h3>Subject</h3>
-<%= link_to "Add Materials", new_subject_material_path(@subject), class: "btn btn-primary"%>
+    <%= image_tag "subjectbg.jpg"%>
+
+  <h3>Subject</h3>
+<%= link_to "Add Materials", new_subject_material_path(@subject), class: "btn btn-success"%>
+<%= link_to "Post Assignment", new_subject_assignment_path(@subject), class: "btn btn-success"%>
+<%= link_to "Post Announcement", new_subject_announcement_path(@subject), class: "btn btn-success"%>
 <div class="well">
-<% binding.pry%>
-  <%= @subject.title%>
-  <% @materials.each do |material|%>
-  	<%= link_to "Download Materials", material.attachment_url %>
-  <% end %>
+  <strong><%= @subject.title%></strong></br>
+    <div clas="well">
+      <%= current_user.email%>
+    <hr>
+      <div class="well">
+        <% @materials.each do |material|%>
+        <div class="well">
+          <%= current_user.email%><br>
+          <%= link_to "#{material.title}", material.attachment_url %></br>
+        </div>
+        <%end%>
+      </div>
+    </div>
+      <hr>
+    <div class="well">
+      <%= current_user.email%>
+    <hr>
+      <div class="well">
+        <h3>Assignments</h3>
+        <%@assignments.each do |assignment|%>
+          <%= link_to "#{assignment.title}", assignment.attachment_url%></br>
+          <!--<%= render "assignments/new"%>-->
+        <%end%>
+      </div>
+    </div>
+      <hr>
+    <div class="well">
+      <%= current_user.email%>
+    <hr> 
+      <div class="well">
+        <h3>Announcement !!!</h3>
+        <% @announcements.each do |announcement|%>
+          <%= announcement.description%>
+        <% end %>
+      </div>
+    </div>
+      <hr>
+</div>  
 </div>
