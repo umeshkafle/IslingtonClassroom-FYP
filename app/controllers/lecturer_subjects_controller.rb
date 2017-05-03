@@ -1,14 +1,14 @@
 class LecturerSubjectsController < ApplicationController
   def index
     @lecturer = current_user
-    @subjects = Subjects.all
+    @lecturer_subjects = LecturerSubject.all
   end
 
   def show
-    @subject = Subject.find(params[:id])
-    @materials = @subject.materials
-    @assignments = @subject.assignments
-    @announcements = @subject.announcements
+    @lecturer_subject = LecturerSubject.find(params[:id])
+    @materials = @lecturer_subject.materials
+    @assignments = @lecturer_subject.assignments
+    @announcements = @lecturer_subject.lecturer.announcements
   end
 
   def new
@@ -16,10 +16,12 @@ class LecturerSubjectsController < ApplicationController
   end
 
   def create
-    @subject = current_user.subjects.new
-    if @subject.save
-      redirect_lecturer_subjects_path
+    subjects = params[:lecturer_subject][:lecturer_id].map.with_index{|v,i| v  unless i == 0}.compact
+    subjects.each do |subject|
+      sub = Subject.find_by_title(subject)
+      current_user.lecturer_subjects.find_or_create_by(subject_id: sub.id)
     end
+    redirect_to root_url
   end
 
   def edit

@@ -14,15 +14,23 @@ Rails.application.routes.draw do
     root 'lecturer_dashboard#index'
     resources :lecturers, only: [:edit, :update]
   end
-
-
-  resources :subjects, only: [] do
+  resources :subjects do
     resources :materials, only: [:new, :create]
     resources :assignments, only: [:new, :create]
     resources :announcements, only: [:new, :create]
   end
-  resources :student_subjects
+  resources :student_subjects do
+    resources :materials, only: [:new, :create]
+    resources :assignments, only: [:new, :create]
+    resources :announcements, only: [:new, :create]
+  end
+  resources :lecturer_subjects do
+    resources :materials, only: [:new, :create]
+    resources :assignments, only: [:new, :create]
+    resources :announcements, only: [:new, :create]
+  end
   resources :lecturer_subjects
+  resources :student_subjects
   resources :courses do
     resources :subjects
   end

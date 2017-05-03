@@ -1,24 +1,15 @@
-<div id="student-dashboard">
+<div id="lecturer-dashboard">
   <%= link_to "Go To courses", courses_path%>
 
 <div class="container">
 <h2>Lecturer Subjects</h2>
-  <div>
-  <% @courses.each do |course|%>
-  <div>
-      <%= course.title%>
-    </div>
-      <div>
-    <% @subjects.each do |subject| %>
-      <div class="col-md-3 col-sm-4 col-xs-12">
-        <% if subject.course_id == course.id%> 
-            <div class="subject.title">
-              <%=link_to "#{subject.title}", lecturer_subject_path(subject)%> 
-            </div>
-            <%end%>
+  <% @lecturer_subjects.each do |lecturer_subject| %>
+    <div class="col-md-3 col-sm-4 col-xs-12"> 
+          <div class="subject.title">
+          <%=link_to "#{lecturer_subject.subject.try(:title)}", lecturer_subject_path(lecturer_subject)%> 
           </div>
-        <%end%>
-    </div>          
-    <%end%>
     </div>
-</div>
+  <%end%>
+</div> 
+</div>          
+ 

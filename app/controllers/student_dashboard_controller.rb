@@ -4,7 +4,7 @@ class StudentDashboardController < ApplicationController
 
   def index
   	@courses = Course.all
-  	@subjects = Subject.all
+  	@student_subjects = StudentSubject.all
   end
 
   def shows

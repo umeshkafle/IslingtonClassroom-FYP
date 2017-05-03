@@ -1,0 +1,10 @@
+<p>
+	A new material was posted for your <%= link_to @subject.title%>:
+</p>
+<blockquote>
+	<em><%= @material.title%></em>
+	<em><%= @material.attachment%></em>
+<p>
+	To view to this post, please visit the students subject page at:
+	<%= student_subject_url(@subject)%>
+</p>

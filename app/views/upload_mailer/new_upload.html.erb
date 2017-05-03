@@ -1,17 +1,13 @@
 <p>
-	 <%= @User.email%>: Added something in your classroom.
-
+	A new Uploads was posted for your <%= link_to @subject.title%>:
 </p>
-
 <blockquote>
-	<% if upload.category :assignment %>
-	<%= @upload.due_date%>
-</blockquote>
-	
+	<em><%= @material.title%></em>
+	<em><%= @material.attachment%></em>
+	<em><%= @assignment.title%></em>
+	<em><%= @assignment.attachment%></em>
+	<em><%= @announcement.title%></em>
 <p>
-	To reply to this schedule, please visit the curriculumpage at:
-	
-	Please visit company for your Interview
-	Visit this like for location:
-	"#######"
+	To view to this post, please visit the students subject page at:
+	<%= student_subject_url(@subject)%>
 </p>

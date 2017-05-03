@@ -1,0 +1,9 @@
+<%= form_for :lecturer_subject, url: lecturer_subjects_path, html: { multipart: true } do |f| %>
+  <div class= "field">
+    <%= f.label :Subjects%>
+    <%= f.select :lecturer_id, Subject.all_subject_titles, {}, multiple: true, class: 'customSelect form-control chosen-select', data: { placeholder: "Select Subject"} %>
+  </div></br>
+  <div class="actions">
+    <%= f.submit "Save Subject", class: "btn btn-info" %>
+  </div>
+<% end %>

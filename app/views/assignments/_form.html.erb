@@ -2,7 +2,7 @@
 
 <div class="container">
 
-  <%= form_for :assignment, url: subject_assignments_path(@subject),html: { multipart: true } do |f| %>
+  <%= form_for :assignment, url: lecturer_subject_assignments_path(lecturer_subject_id: @lecturer_subject.id),html: { multipart: true } do |f| %>
     <div class="form-group">
       <%= f.label :Title%>
       <%= f.text_field :title, class: "form-control"%>

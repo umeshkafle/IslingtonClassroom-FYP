@@ -3,10 +3,12 @@ class SubjectsController < ApplicationController
   def index
     @course = Course.find(params[:course_id])
     @subjects = @course.subjects
+    @courses = Course.all
   end
 
   def new
-    @subject = Subject.new
+    @course = Course.find(params[:course_id])
+    @subject = @course.subjects.new
   end
 
   def show

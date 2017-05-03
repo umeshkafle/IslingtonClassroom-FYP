@@ -1,0 +1,30 @@
+<!-- <div class="modal fade" id="newModal" role="dialog">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+        <h4 class="modal-title">Add Subject</h4>
+      </div>
+      <div class="modal-body">
+         -- <%= form_for :student_subject, url: studemt_subjects_path, html: { multipart: true} do |f| %>
+        <div class= "field">
+          <%= f.label :Subjects%>
+          <%= f.select :student_subjects, Subject.all_subject_titles, {}, multiple: true, class: 'customSelect form-control chosen-select', data: { placeholder: "Select Subject"} %>
+        </div>
+           
+        <div class="modal-footer">
+
+          <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+           Save
+          <% end %>
+          <%= link_to "Cancle", root_url, class: "btn btn-danger"%>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!-- = meal.label 'Drinks'
+          = meal.select :drinks, Drink.all_drink_names, {}, multiple: true, class: 'customSelect form-control chosen-select', data: { placeholder: "Select" } -->
+           -->

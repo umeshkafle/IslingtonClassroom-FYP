@@ -10,4 +10,8 @@ class Subject < ApplicationRecord
 	has_many :materials
 	has_many :uploads
 	enum student_class: [:computing, :networking, :multimedia, :bba]
+
+	def self.all_subject_titles
+     all.map(&:title)
+    end
 end

@@ -3,22 +3,16 @@
 
 <div class="container">
 <h2>Student Subjects</h2>
+  
+
   <div>
-  <% @courses.each do |course|%>
-  <div>
-      <%= course.title%>
-    </div>
-      <div>
-    <% @subjects.each do |subject| %>
-      <div class="col-md-3 col-sm-4 col-xs-12">
-        <% if subject.course_id == course.id%> 
-            <div class="subject.title">
-              <%=link_to "#{subject.title}", student_subjects_path(subject)%> 
-            </div>
-            <%end%>
-          </div>
-        <%end%>
-    </div>          
+    <% @student_subjects.each do |student_subject| %>
+      <div class="col-md-3 col-sm-4 col-xs-12"> 
+        <div class="subject.title">
+          <%=link_to "#{student_subject.subject.try(:title)}", student_subject_path(student_subject)%> 
+        </div>
+      </div>
     <%end%>
-    </div>
+  </div>          
+</div>
 </div>

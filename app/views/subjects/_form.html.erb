@@ -1,10 +1,20 @@
 <h3> Form to add subject </h3>
 
-<%= form_for :subject, url: { :action => 'create' } do |f| %>
-	<div class="form-group">
-    <%= f.label :Subject_Name %>
-    <%= f.text_field :title, class: "form-control" %>
-  </div>
-  <%= f.submit class: "btn btn-primary" %>
+<!--<%= form_for :subject, url: { :action => 'create' } do |f| %>
+# 	<div class="form-group">
+#     <%= f.label :Subject_Name %>
+#     <%= f.text_field :title, class: "form-control" %>
+#   </div>
+#   <%= f.submit class: "btn btn-primary" %>
 
-<%end%>
+# <%end%>-->
+
+<%= form_for @subject, html: {multipart: true} do |f|%>
+  <div class="field">
+  	<%= f.label :Subjects%>
+    <%= f.select :subjects, Subject.all_subject_titles, {}, multiple: true, class: 'customSelect form-control chosen-select', data: { placeholder: "Select Subject"} %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

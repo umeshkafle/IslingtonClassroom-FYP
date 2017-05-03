@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170429105254) do
+ActiveRecord::Schema.define(version: 20170502200415) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -41,6 +41,11 @@ ActiveRecord::Schema.define(version: 20170429105254) do
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "answers", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "courses", force: :cascade do |t|
@@ -84,6 +89,7 @@ ActiveRecord::Schema.define(version: 20170429105254) do
     t.datetime "updated_at", null: false
     t.integer  "subject_id"
     t.integer  "student_id"
+    t.string   "title"
   end
 
   create_table "students", force: :cascade do |t|
@@ -104,24 +110,27 @@ ActiveRecord::Schema.define(version: 20170429105254) do
 
   create_table "subjects", force: :cascade do |t|
     t.string   "title"
-    t.string   "attachment"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "course_id"
     t.integer  "lecturer_id"
     t.integer  "student_id"
+    t.string   "subject_code"
   end
 
   create_table "uploads", force: :cascade do |t|
     t.string   "title"
     t.string   "attachment"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.integer  "category"
     t.string   "type"
     t.integer  "lecturer_id"
     t.integer  "subject_id"
     t.text     "description"
+    t.integer  "lecturer_subject_id"
+    t.integer  "student_subject"
+    t.integer  "student_subject_id"
   end
 
   create_table "users", force: :cascade do |t|

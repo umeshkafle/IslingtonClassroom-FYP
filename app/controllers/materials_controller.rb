@@ -10,6 +10,8 @@ class MaterialsController < ApplicationController
 		@material = current_user.materials.new(materials_params.merge(subject: @subject))
 		if @material.save
 			redirect_to lecturer_subject_path(@subject), notice: "Material is successfully created for the subject."
+
+			MaterialMailer.new_material(material).deliver_now
 		else
 			render 'new'
 		end

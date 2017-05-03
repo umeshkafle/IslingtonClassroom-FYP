@@ -1,11 +1,11 @@
 
-
-<%= form_for @student_subject do |f|%>
-  <div class="field">
-  	<%= f.label :title%>
-    <%= f.select :subject_id, Subject.all.collect { |s| [ s.title, s.id ] } %>
-  </div>
+<%= form_for :student_subject, url: student_subjects_path, html: { multipart: true } do |f| %>
+  <div class= "field">
+    <%= f.label :Subjects%>
+    <%= f.select :student_id, Subject.all_subject_titles, {}, multiple: true, class: 'customSelect form-control chosen-select', data: { placeholder: "Select Subject"} %>
+  </div></br>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Save Subject", class: "btn btn-info" %>
   </div>
 <% end %>
+

@@ -3,15 +3,16 @@
     <%= image_tag "subjectbg.jpg"%>
 
   <h3>Subject</h3>
-<%= link_to "Add Materials", new_subject_material_path(@subject), class: "btn btn-success"%>
-<%= link_to "Post Assignment", new_subject_assignment_path(@subject), class: "btn btn-success"%>
-<%= link_to "Post Announcement", new_subject_announcement_path(@subject), class: "btn btn-success"%>
+<%= link_to "Add Materials", new_subject_material_path(@lecturer_subject), class: "btn btn-success"%>
+<%= link_to "Post Assignment", new_lecturer_subject_assignment_path(@lecturer_subject), class: "btn btn-success"%>
+<%= link_to "Post Announcement", new_subject_announcement_path(@lecturer_subject), class: "btn btn-success"%>
 <div class="well">
-  <strong><%= @subject.title%></strong></br>
+  <strong><%= @lecturer_subject.subject.try(:title)%></strong></br>
     <div clas="well">
       <%= current_user.email%>
     <hr>
       <div class="well">
+
         <% @materials.each do |material|%>
         <div class="well">
           <%= current_user.email%><br>
@@ -28,7 +29,6 @@
         <h3>Assignments</h3>
         <%@assignments.each do |assignment|%>
           <%= link_to "#{assignment.title}", assignment.attachment_url%></br>
-          <!--<%= render "assignments/new"%>-->
         <%end%>
       </div>
     </div>
