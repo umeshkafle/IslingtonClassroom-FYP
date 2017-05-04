@@ -26,6 +26,7 @@
         <h3>Assignments</h3>
         <%@assignments.each do |assignment|%>
           <%= link_to "#{assignment.title}", assignment.attachment_url%></br>
+          <%= render "assignments/form"%>
         <%end%>
       </div>
     </div>
