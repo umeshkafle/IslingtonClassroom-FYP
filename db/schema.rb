@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170502200415) do
+ActiveRecord::Schema.define(version: 20170508000820) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -48,6 +48,16 @@ ActiveRecord::Schema.define(version: 20170502200415) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "conversations", force: :cascade do |t|
+    t.integer  "recipient_id"
+    t.integer  "sender_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["recipient_id", "sender_id"], name: "index_conversations_on_recipient_id_and_sender_id", unique: true
+    t.index ["recipient_id"], name: "index_conversations_on_recipient_id"
+    t.index ["sender_id"], name: "index_conversations_on_sender_id"
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at", null: false
@@ -82,6 +92,16 @@ ActiveRecord::Schema.define(version: 20170502200415) do
     t.index ["invitation_token"], name: "index_lecturers_on_invitation_token", unique: true
     t.index ["invitations_count"], name: "index_lecturers_on_invitations_count"
     t.index ["invited_by_id"], name: "index_lecturers_on_invited_by_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "user_id"
+    t.integer  "conversation_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "student_subjects", force: :cascade do |t|

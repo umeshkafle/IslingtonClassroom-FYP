@@ -6,9 +6,9 @@ class LecturerSubjectsController < ApplicationController
 
   def show
     @lecturer_subject = LecturerSubject.find(params[:id])
-    @materials = @lecturer_subject.materials
-    @assignments = @lecturer_subject.assignments
-    @announcements = @lecturer_subject.lecturer.announcements
+    @materials = @lecturer_subject.subject.materials
+    @assignments = @lecturer_subject.subject.assignments
+    @announcements = @lecturer_subject.subject.announcements
   end
 
   def new

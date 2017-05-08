@@ -5,6 +5,13 @@ Rails.application.routes.draw do
   devise_for :users,
           :controllers => {:invitations => 'users_invitations'}# user_invitations_controller.rb
 
+          resources :conversations, only: [:create] do
+            member do
+              post :close
+            end
+            resources :messages, only: [:create]
+          end
+
   authenticate :user, ->(user) { user.student? } do
     root 'student_dashboard#index'
     resources :students, only: [:edit, :update]

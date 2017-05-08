@@ -1,48 +1,64 @@
-<div class="container" style="width: 75%">
+ 
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <%= image_tag "subjectbg.jpg"%>
+</head>
+<div class="container" style="width: 100%; padding-left: 60px; padding-right:  60px">
 
-  <h3>Subject</h3>
-<%= link_to "Add Materials", new_subject_material_path(@lecturer_subject), class: "btn btn-success"%>
+        <%= image_tag "subjectbg.jpg", class: "subimg" %>
+
+    <div class="container">
+
+      <ul class="nav nav-tabs" style="position: fixed;top: 0;bottom: 0;left: 0;right: 0;margin-top: 211px;margin-left: 445px;">
+        <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+        <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+        <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+        <li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
+        
 <%= link_to "Post Assignment", new_lecturer_subject_assignment_path(@lecturer_subject), class: "btn btn-success"%>
 <%= link_to "Post Announcement", new_subject_announcement_path(@lecturer_subject), class: "btn btn-success"%>
-<div class="well">
-  <strong><%= @lecturer_subject.subject.try(:title)%></strong></br>
-    <div clas="well">
-      <%= current_user.email%>
-    <hr>
-      <div class="well">
+<%= link_to "Post Materials", new_subject_material_path(@lecturer_subject), class: "btn btn-success"%>
 
-        <% @materials.each do |material|%>
-        <div class="well">
-          <%= current_user.email%><br>
-          <%= link_to "#{material.title}", material.attachment_url %></br>
+      </ul>
+
+
+        <div class="tab-content" style="padding-top:240px;">
+            <div id="home" class="tab-pane fade in active">
+            <%@assignments.each do |assignment|%>
+              <div class="panel panel-default">
+                <div class="panel-heading">Assignment_<%= assignment.title %></div>
+                  <div class="panel-body"><%= link_to "#{assignment.title}", assignment.attachment_url%></div>
+                  </div>
+                <%end%>
+            </div>
+
+            <div class="tab-content" style="padding-top:240px;">
+            <div id="home" class="tab-pane fade in active">
+            <% @announcements.each do |announcement|%>
+              <div class="panel panel-default">
+                <div class="panel-heading">Announcement !!!<%= announcement.title %></div>
+                  <div class="panel-body"><%= announcement.description%></div>
+                  </div>
+                <%end%>
+            </div>
+        <div id="menu1" class="tab-pane fade">
+          <h3>Menu 1</h3>
+          <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </div>
-        <%end%>
+        <div id="menu2" class="tab-pane fade">
+          <h3>Menu 2</h3>
+          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+        </div>
+        <div id="menu3" class="tab-pane fade">
+          <h3>Menu 3</h3>
+          <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        </div>
       </div>
     </div>
-      <hr>
-    <div class="well">
-      <%= current_user.email%>
-    <hr>
-      <div class="well">
-        <h3>Assignments</h3>
-        <%@assignments.each do |assignment|%>
-          <%= link_to "#{assignment.title}", assignment.attachment_url%></br>
-        <%end%>
-      </div>
-    </div>
-      <hr>
-    <div class="well">
-      <%= current_user.email%>
-    <hr> 
-      <div class="well">
-        <h3>Announcement !!!</h3>
-        <% @announcements.each do |announcement|%>
-          <%= announcement.description%>
-        <% end %>
-      </div>
-    </div>
-      <hr>
-</div>  
-</div>
+ </div>
+</html>

@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :invitable
 
          has_many :uploads
+         has_many :messages
+         has_many :conversations, foreign_key: :sender_id
 
   def student?
     type == 'Student'

@@ -2,7 +2,7 @@
 
 <div class="container">
 
-  <%= form_for :announcement, url: subject_announcements_path(@subject),html: { multipart: true } do |f| %>
+  <%= form_for :announcement, url: lecturer_subject_announcements_path(lecturer_subject_id: @lecturer_subject.id) do |f| %>
     <div class="form-group">
       <%= f.label :Announcement%>
       <%= f.text_area :description, class: "form-control"%>

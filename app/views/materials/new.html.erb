@@ -2,7 +2,7 @@
 
 <div class="container">
 
-  <%= form_for :material, url: subject_materials_path(@subject),html: { multipart: true } do |f| %>
+  <%= form_for :material, url: lecturer_subject_materials_path(lecturer_subject_id: @lecturer_subject.id),html: { multipart: true } do |f| %>
     <div class="form-group">
       <%= f.label :Title%>
       <%= f.text_field :title, class: "form-control"%>
@@ -13,7 +13,7 @@
       <%= f.file_field :attachment%>
     </div>
 
-    <%= f.submit "Post Materials", class: "btn btn-info"%>
+    <%= f.submit "Post Assignments", class: "btn btn-info"%>
 
   <% end %>
 </div>

@@ -1,18 +1,47 @@
-<div id="student-dashboard">
-  <%= link_to "Go To courses", courses_path%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+ 
+<div class="container" style="margin-top: 30px;">
+  <% @student_subjects.each do |student_subject| %>
+  <div class="panel panel-default col col-lg-3 " style="margin-right:10px; height: 200px;width: 360px;">
+    <div class="panel-heading" style="height: 115px"><h3> <%=link_to "#{lecturer_subject.subject.try(:title)}", student_subject_path(student_subject)%></h3> </div>
+    <div class="panel-body"><h4> <%= student_subject.subject.subject_code%> </h4></div>
+  </div>
+ <%end%> 
+</div>
+<div class="row">
+  <div class="col-md-9">
+    <ul id="conversations-list">
+      <% @conversations.each do |conversation| %>
+        <%= render 'conversations/conversation', conversation: conversation, user: current_user %>
+      <% end %>
+    </ul>
+  </div>
 
-<div class="container">
-<h2>Student Subjects</h2>
-  
-
-  <div>
-    <% @student_subjects.each do |student_subject| %>
-      <div class="col-md-3 col-sm-4 col-xs-12"> 
-        <div class="subject.title">
-          <%=link_to "#{student_subject.subject.try(:title)}", student_subject_path(student_subject)%> 
-        </div>
+  <div class="col-md-3">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">User list</h3>
       </div>
-    <%end%>
-  </div>          
+      <div class="panel-body">
+        <ul>
+          <% @users.each do |user| %>
+            <li><%= link_to user.email, conversations_path(user_id: user), remote: true, method: :post %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
+
+</body>
+</html>
