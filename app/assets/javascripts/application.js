@@ -15,7 +15,9 @@
 //= require cocoon
 //= require jquery_ujs
 //= require chosen-jquery
-//= require turbolinks
+//= require bootstrap-datepicker
+ 
+
 //= require_tree .
 
 (function() {

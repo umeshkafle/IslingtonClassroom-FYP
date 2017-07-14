@@ -1,13 +1,10 @@
-<h3>Form to post announcement</h3>
-
-<div class="container">
-
+ <div class="well", style="width:50%; height: 300px; margin: 0 auto; text-align:center; margin-top:100px;" >
   <%= form_for :announcement, url: lecturer_subject_announcements_path(lecturer_subject_id: @lecturer_subject.id) do |f| %>
+    <h3 class="announcemnt", style="font-family:serif;">Post your Announcement here</h3>
     <div class="form-group">
-      <%= f.label :Announcement%>
-      <%= f.text_area :description, class: "form-control"%>
+      <%= f.label :Announcement, style:"float:left; font-size: 16px; font-family: san-serif"%>
+      <%= f.text_area :description, class: "form-control", style:"width:100%"%>
     </div>
     <%= f.submit "Post Announcements", class: "btn btn-info"%>
-
   <% end %>
 </div>

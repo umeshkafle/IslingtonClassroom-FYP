@@ -16,13 +16,11 @@
 
       <ul class="nav nav-tabs" style="position: fixed;top: 0;bottom: 0;left: 0;right: 0;margin-top: 211px;margin-left: 445px;">
         <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-        <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
-        <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
-        <li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
+        <li><a data-toggle="tab" href="#menu1">Study Materials</a></li>
         
-<%= link_to "Post Assignment", new_lecturer_subject_assignment_path(@lecturer_subject), class: "btn btn-success"%>
-<%= link_to "Post Announcement", new_subject_announcement_path(@lecturer_subject), class: "btn btn-success"%>
-<%= link_to "Post Materials", new_subject_material_path(@lecturer_subject), class: "btn btn-success"%>
+<%= link_to "Post Assignment", new_lecturer_subject_assignment_path(lecturer_subject_subject_id: subject.id), class: "btn btn-success"%>
+<%= link_to "Post Announcement", new_lecturer_subject_announcement_path(@lecturer_subject), class: "btn btn-success"%>
+<%= link_to "Post Materials", new_lecturer_subject_material_path(@lecturer_subject), class: "btn btn-success"%>
 
       </ul>
 
@@ -31,8 +29,10 @@
             <div id="home" class="tab-pane fade in active">
             <%@assignments.each do |assignment|%>
               <div class="panel panel-default">
-                <div class="panel-heading">Assignment_<%= assignment.title %></div>
-                  <div class="panel-body"><%= link_to "#{assignment.title}", assignment.attachment_url%></div>
+                <div class="panel-heading">Assignment_<%= assignment.title %> 
+                  <div style="float:right;"> Due Date_<%= assignment.try(:submission_end_date).try(:strftime, "%d/%m/%Y")%></div>
+                </div>
+                  <div class="panel-body"><%= link_to "#{assignment.attachment}", assignment.attachment_url, target: "blank"%></div>
                   </div>
                 <%end%>
             </div>
@@ -47,8 +47,15 @@
                 <%end%>
             </div>
         <div id="menu1" class="tab-pane fade">
-          <h3>Menu 1</h3>
-          <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <div class="tab-content" style="padding-top:240px;">
+            <div id="home" class="tab-pane fade in active">
+            <% @materials.each do |material|%>
+              <div class="panel panel-default">
+                <div class="panel-heading">Study Material <%= material.title %></div>
+                  <div class="panel-body"><%= link_to "#{material.title}"%></div>
+                  </div>
+                <%end%>
+            </div>
         </div>
         <div id="menu2" class="tab-pane fade">
           <h3>Menu 2</h3>

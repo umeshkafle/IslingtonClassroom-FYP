@@ -1,4 +1,4 @@
- <div class="container" style="width: 75%">
+   <div class="container" style="width: 75%">
 
     <%= image_tag "subjectbg.jpg"%>
 
@@ -26,7 +26,10 @@
         <h3>Assignments</h3>
         <%@assignments.each do |assignment|%>
           <%= link_to "#{assignment.title}", assignment.attachment_url%></br>
-          <%= render "assignments/form"%>
+          <%= render partial: "answers/form", locals: {assignment_id: assignment.id}%>
+          <% assignment.answers.each do |answer|%>
+            <%= answer.attachment.url%>
+          <%end%>
         <%end%>
       </div>
     </div>

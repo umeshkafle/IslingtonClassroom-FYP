@@ -1,8 +1,8 @@
-class LecturerDashboardController < ApplicationController
+  class LecturerDashboardController < ApplicationController
   before_action :authenticate_user!
   def index
   	@courses = Course.all
-  	@lecturer_subjects = LecturerSubject.all
+  	@lecturer_subjects = current_user.lecturer_subjects
 
 
   	session[:conversations] ||= []

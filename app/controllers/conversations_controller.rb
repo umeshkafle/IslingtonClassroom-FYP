@@ -1,33 +1,33 @@
-class ConversationsController < ApplicationController
+# class ConversationsController < ApplicationController
 
-  def create
-    @conversation = Conversation.get(current_user.id, params[:user_id])
+#   def create
+#     @conversation = Conversation.get(current_user.id, params[:user_id])
 
-    add_to_conversations unless conversated?
+#     add_to_conversations unless conversated?
 
-    respond_to do |format|
-      format.js
-    end
-  end
+#     respond_to do |format|
+#       format.js
+#     end
+#   end
 
-  def close
-    @conversation = Conversation.find(params[:id])
+#   def close
+#     @conversation = Conversation.find(params[:id])
 
-    session[:conversations].delete(@conversation.id)
+#     session[:conversations].delete(@conversation.id)
 
-    respond_to do |format|
-      format.js
-    end
-  end
+#     respond_to do |format|
+#       format.js
+#     end
+#   end
 
-  private
+#   private
 
-  def add_to_conversations
-    session[:conversations] ||= []
-    session[:conversations] << @conversation.id
-  end
+#   def add_to_conversations
+#     session[:conversations] ||= []
+#     session[:conversations] << @conversation.id
+#   end
 
-  def conversated?
-    session[:conversations].include?(@conversation.id)
-  end
-end
+#   def conversated?
+#     session[:conversations].include?(@conversation.id)
+#   end
+# end

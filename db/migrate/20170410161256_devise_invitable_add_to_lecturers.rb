@@ -1,4 +1,4 @@
-class DeviseInvitableAddToLecturers < ActiveRecord::Migration
+  class DeviseInvitableAddToLecturers < ActiveRecord::Migration
   def up
     change_table :lecturers do |t|
       t.string     :invitation_token

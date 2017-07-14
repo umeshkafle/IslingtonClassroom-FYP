@@ -22,34 +22,27 @@
             </button>
            
             <a class="navbar-brand" href="/" style="float:right; margin-left: 10px;">IslingtonClassroom</a>
+  
           </div>
           <% if user_signed_in?%>
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Select Subject", params[:controller] == 'lecturer_dashboard' ? new_lecturer_subject_path : new_student_subject_path %></li>
+            <li> <%= link_to "Select Subject", params[:controller] == 'lecturer_dashboard' ? new_lecturer_subject_path : new_student_subject_path %></li>
+            <li><%= link_to "Log Out", destroy_user_session_path, method: :delete%></li>
             <li class="dropdown">
              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.email%> <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "Log Out", destroy_user_session_path, method: :delete%></li>
-              </ul>
+              <!-- <ul class="dropdown-menu">
+                
+              </ul> -->
             </li> 
-          </ul>  
+          </ul> 
+          <% end %> 
         </div>
       </div>   
     </nav>
-    <!-- <div id="pop-up-modal">
-  </div> -->
-
-<!-- <nav class="navbar navbar-inverse sidebar" role="navigation" style="position: fixed; margin-top: 50px;">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <!--  -->
-  </div>
-</nav>
-
     <div style="padding-top:50px;padding-bottom: 60px">
-      <%= yield%>
+      <%= yield %>
     </div>
-    <%end%>
+    
 
 <script type="text/javascript">
       function htmlbodyHeightUpdate(){
@@ -78,6 +71,5 @@
     });
   });
 </script>
- -->
   </body>
 </html>

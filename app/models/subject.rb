@@ -8,7 +8,6 @@ class Subject < ApplicationRecord
 	has_many :assignments
 	has_many :announcements
 	has_many :materials
-	has_many :uploads
 	enum student_class: [:computing, :networking, :multimedia, :bba]
 
 	def self.all_subject_titles

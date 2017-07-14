@@ -8,7 +8,7 @@ class AnnouncementsController < ApplicationController
 
   def create
     subject = @lecturer_subject.subject
-    @announcement = current_user.announcements.new(announcements_params.merge(lecturer_subject: @lecturer_subject, subject: subject))
+    @announcement = current_user.announcements.new(announcements_params.merge(subject: @lecturer_subject, subject: subject))
     if @announcement.save
       redirect_to lecturer_subject_path(@lecturer_subject), notice: "Material is successfully created for the subject."
     else

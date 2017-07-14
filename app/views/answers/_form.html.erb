@@ -1,0 +1,5 @@
+<%= form_for :answer, url: assignment_answers_path(assignment_id), html: { multipart: true } do |f|%>
+	<%= f.label :Post_Your_Answer %>
+    <%= f.file_field :attachment %>
+    <%= submit_tag "Submit"%>
+<%end%>

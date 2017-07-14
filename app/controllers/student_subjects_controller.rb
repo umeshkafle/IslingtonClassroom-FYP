@@ -2,7 +2,7 @@ class StudentSubjectsController < ApplicationController
 
   def index
     @student = current_user
-    @student_subjects = StudentSubject.all
+    @student_subjects = cuerrent_user.student_subjects
 
     session[:conversations] ||= []
     @users = User.all.where.not(id: current_user)

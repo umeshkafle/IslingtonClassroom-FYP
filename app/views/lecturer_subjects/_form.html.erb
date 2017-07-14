@@ -1,9 +1,15 @@
 <%= form_for :lecturer_subject, url: lecturer_subjects_path, html: { multipart: true } do |f| %>
-  <div class= "field">
+<div>
+  <div class= "well", style="width:50%; height: 300px; margin: 0 auto; text-align:center; margin-top:100px;">
+    <h3>Select Subject</h3>
     <%= f.label :Subjects%>
-    <%= f.select :lecturer_id, Subject.all_subject_titles, {}, multiple: true, class: 'customSelect form-control chosen-select', data: { placeholder: "Select Subject"} %>
+    <%= f.select :lecturer_id, Subject.all_subject_titles, {}, multiple: true, class: 'customSelect form-control chosen-select', data: { placeholder: "Select Subject"}, style:"width:50%; height:40px;" %>
+    <div class="subject-button" style="margin-top: 40px;">
+      <%= f.submit "Save Subject", class: "btn btn-info" %>
+    </div>
   </div></br>
   <div class="actions">
-    <%= f.submit "Save Subject", class: "btn btn-info" %>
+    
   </div>
 <% end %>
+</div>

@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
 
+  get 'answers/index'
+
+  get 'answers/new'
+
+  get 'answers/show'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users,
           :controllers => {:invitations => 'users_invitations'}# user_invitations_controller.rb
 
-          resources :conversations, only: [:create] do
-            member do
-              post :close
-            end
-            resources :messages, only: [:create]
-          end
+
 
   authenticate :user, ->(user) { user.student? } do
     root 'student_dashboard#index'
@@ -41,6 +42,17 @@ Rails.application.routes.draw do
   resources :courses do
     resources :subjects
   end
+
+  resources :assignments do
+    resources :answers
+  end
+
+  # resources :conversations, only: [:create] do
+  #   member do
+  #     post :close
+  #   end
+  #   resources :messages, only: [:create]
+  # end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

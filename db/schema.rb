@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170508000820) do
+ActiveRecord::Schema.define(version: 20170712193640) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -44,8 +44,11 @@ ActiveRecord::Schema.define(version: 20170508000820) do
   end
 
   create_table "answers", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "assignment_id"
+    t.string   "attachment"
+    t.integer  "student_id"
   end
 
   create_table "conversations", force: :cascade do |t|
@@ -130,12 +133,13 @@ ActiveRecord::Schema.define(version: 20170508000820) do
 
   create_table "subjects", force: :cascade do |t|
     t.string   "title"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "course_id"
     t.integer  "lecturer_id"
     t.integer  "student_id"
     t.string   "subject_code"
+    t.integer  "assignment_id"
   end
 
   create_table "uploads", force: :cascade do |t|
@@ -151,6 +155,7 @@ ActiveRecord::Schema.define(version: 20170508000820) do
     t.integer  "lecturer_subject_id"
     t.integer  "student_subject"
     t.integer  "student_subject_id"
+    t.datetime "submission_end_date"
   end
 
   create_table "users", force: :cascade do |t|
