@@ -291,12 +291,12 @@
   -------------------*/
 
   .subimg{
-  position: fixed;
   left: 0px;
   right: 0px;
   width: 100%;
   top: 0px;
-  height: 252px;
+  height: 200px;
+  position: absolute;
   }
   .subbtn{
   margin-top: 218px;
@@ -341,4 +341,8 @@
   padding: 10px;
   float: left;
 }
+
+
+
+
   

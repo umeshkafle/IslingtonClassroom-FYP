@@ -1,4 +1,94 @@
-   <div class="container" style="width: 75%">
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<%= image_tag "subjectbg.jpg", class: "subimg" %>
+
+<div class="assignmentdesc" style="position: relative; text-align: center;">
+  <h2>Title :</h2>
+  <h1>code :</h1>
+</div>
+
+<body>
+
+<div class="container">
+<tabs>
+  <ul class="nav nav-tabs" style="margin-bottom: 10px; margin-top: 40px;">
+        <li class="active"><a data-toggle="tab" href="#menu1">Assignment</a></li>
+        <li><a data-toggle="tab" href="#menu2">Announcement</a></li>
+        <li><a data-toggle="tab" href="#menu3">Study Materials</a></li>
+  </ul>
+</tabs>
+
+  <div class="tab-content">
+    <div id="menu1" class="tab-pane fade in active">
+            <%@assignments.each do |assignment|%>
+              <div class="panel panel-default">
+                <div class="panel-heading">Assignment_<%= assignment.title %> 
+                    <div style="float:right;"> Due Date_<%= assignment.try(:submission_end_date).try(:strftime, "%d/%m/%Y")%>
+                    </div>
+                </div>
+                <div class="panel-body"><%= link_to "#{assignment.attachment}", assignment.attachment_url, target: "blank"%>
+                  <div class="answer-btn", style="float:right;">
+                    <%= link_to "Open", "#", class: "btn btn-success"%>
+                    <%= render partial: "answers/form", locals: {assignment_id: assignment.id}%>
+                  </div>
+                </div>
+              </div>
+            <%end%>
+    </div>
+
+    <div id="menu2" class="tab-pane fade">
+              <% @announcements.each do |announcement|%>
+          <div class="panel panel-default">
+              <div class="panel-heading">Announcement !!!<%= announcement.title %></div>
+              <div class="panel-body"><%= announcement.description%></div>
+              <%end%>
+          </div>
+    </div>
+
+    <div id="menu3" class="tab-pane fade">
+
+      <div id="home" class="tab-pane fade in active">
+            <% @materials.each do |material|%>
+              <div class="panel panel-default">
+                <div class="panel-heading">Study Material <%= material.title %></div>
+                  <div class="panel-body"><%= link_to "#{material.title}"%></div>
+                  </div>
+            <%end%>
+      </div> 
+    </div>
+  </div>
+</div>
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--   <div class="container" style="width: 75%">
 
     <%= image_tag "subjectbg.jpg"%>
 
@@ -46,11 +136,11 @@
     </div>
       <hr>
 </div>  
-</div>  -->
+</div> 
 
 
 
-<!-- <div class="col-lg-12 col-sm-12">
+<div class="col-lg-12 col-sm-12">
     <div class="card hovercard">
         <div class="card-background">
             <img class="card-bkimg" alt="" src="/assets/subject.jpeg">

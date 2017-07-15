@@ -3,10 +3,18 @@ class AssignmentsController < ApplicationController
   before_filter :set_lecturer_subject
 
   def new
-    @subject = Subject.find(params[:subject_id])
-    @assignment = current_user.(@subject.assignments).new
-    # @assignment = Assignment.new
+    @assignment = Assignment.new
   end
+
+  # def create
+  #   @subject = Subject.find(params[:subject_id])
+  #   @assignment = current_user.(@subject.assignments).new(assignment_params)
+  #   if @assignment.save
+  #       redirect_to lecturer_subeject_path(@subject.assignment.id)
+  #     else
+  #       redirect_to :back
+  #   end
+  # end
 
   def create
     subject = @lecturer_subject.subject

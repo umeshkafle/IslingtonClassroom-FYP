@@ -1,12 +1,11 @@
- 
+<!--  
 <head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
+  <title>Bootstr</title>
+  <<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 </head>
 <div class="container" style="width: 100%; padding-left: 60px; padding-right:  60px">
 
@@ -14,14 +13,13 @@
 
     <div class="container">
 
-      <ul class="nav nav-tabs" style="position: fixed;top: 0;bottom: 0;left: 0;right: 0;margin-top: 211px;margin-left: 445px;">
+      <ul class="nav nav-tabs" style="position: relative;top: 0;bottom: 0;left: 0;right: 0;margin-top: 211px;margin-left: 445px;">
         <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
         <li><a data-toggle="tab" href="#menu1">Study Materials</a></li>
-        
-<%= link_to "Post Assignment", new_lecturer_subject_assignment_path(lecturer_subject_subject_id: subject.id), class: "btn btn-success"%>
-<%= link_to "Post Announcement", new_lecturer_subject_announcement_path(@lecturer_subject), class: "btn btn-success"%>
-<%= link_to "Post Materials", new_lecturer_subject_material_path(@lecturer_subject), class: "btn btn-success"%>
 
+        <%= link_to "Post Assignment", new_lecturer_subject_assignment_path(@lecturer_subject), class: "btn btn-success"%>
+        <%= link_to "Post Announcement", new_lecturer_subject_announcement_path(@lecturer_subject), class: "btn btn-success"%>
+        <%= link_to "Post Materials", new_lecturer_subject_material_path(@lecturer_subject), class: "btn btn-success"%>
       </ul>
 
 
@@ -38,7 +36,7 @@
             </div>
 
             <div class="tab-content" style="padding-top:240px;">
-            <div id="home" class="tab-pane fade in active">
+            <div id="Study Materials" class="tab-pane fade in active">
             <% @announcements.each do |announcement|%>
               <div class="panel panel-default">
                 <div class="panel-heading">Announcement !!!<%= announcement.title %></div>
@@ -55,7 +53,7 @@
                   <div class="panel-body"><%= link_to "#{material.title}"%></div>
                   </div>
                 <%end%>
-            </div>
+            </div> 
         </div>
         <div id="menu2" class="tab-pane fade">
           <h3>Menu 2</h3>
@@ -68,4 +66,96 @@
       </div>
     </div>
  </div>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<%= image_tag "subjectbg.jpg", class: "subimg" %>
+
+<div class="assignmentdesc" style="position: relative; text-align: center;">
+  <h2>Title :</h2>
+  <h1>code :</h1>
+</div>
+
+<body>
+
+<div class="container">
+<tabs>
+  <ul class="nav nav-tabs" style="margin-bottom: 10px; margin-top: 40px;">
+        <li class="active"><a data-toggle="tab" href="#menu1">Assignment</a></li>
+        <li><a data-toggle="tab" href="#menu2">Announcement</a></li>
+        <li><a data-toggle="tab" href="#menu3">Study Materials</a></li>
+        <li><a data-toggle="tab" href="#menu4">Answers</a></li>
+
+      <ul class="nav nav-tabs pull-right"> 
+         <%= link_to "Post Assignment", new_lecturer_subject_assignment_path(@lecturer_subject), class: "btn btn-success"%>
+        <%= link_to "Post Announcement", new_lecturer_subject_announcement_path(@lecturer_subject), class: "btn btn-success"%>
+        <%= link_to "Post Materials", new_lecturer_subject_material_path(@lecturer_subject), class: "btn btn-success"%>        
+      </ul>
+  </ul>
+</tabs>
+
+  <div class="tab-content">
+    <div id="menu1" class="tab-pane fade in active">
+            <%@assignments.each do |assignment|%>
+              <div class="panel panel-default">
+                <div class="panel-heading">Assignment_<%= assignment.title %> 
+                    <div style="float:right;"> Due Date_<%= assignment.try(:submission_end_date).try(:strftime, "%d/%m/%Y")%>
+                    </div>
+                </div>
+                <div class="panel-body"><%= link_to "#{assignment.attachment}", assignment.attachment_url, target: "blank"%>
+                </div>
+              </div>
+            <%end%>
+    </div>
+
+    <div id="menu2" class="tab-pane fade">
+              <% @announcements.each do |announcement|%>
+          <div class="panel panel-default">
+              <div class="panel-heading">Announcement !!!<%= announcement.title %></div>
+              <div class="panel-body"><%= announcement.description%></div>
+              <%end%>
+          </div>
+    </div>
+
+    <div id="menu3" class="tab-pane fade">
+            <% @materials.each do |material|%>
+              <div class="panel panel-default">
+                <div class="panel-heading">Study Material <%= material.title %></div>
+                  <div class="panel-body"><%= link_to "#{material.title}"%></div>
+                  </div>
+            <%end%>
+    </div>
+
+    <div id="menu4" class="tab-pane fade">
+            
+
+
+            
+    </div>
+
+  </div>
+</div>
+
+</body>
 </html>
